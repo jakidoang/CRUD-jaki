@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('master');
 });
+
+Route::resource('roles', RoleController::class);
+Route::resource('users', UserController::class);
+Route::resource('profiles', ProfileController::class);
