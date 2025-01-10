@@ -6,7 +6,7 @@
     <form action="{{ route('roles.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="name">Name</label>
+            <label class="form-label" for="name">Name</label>
             <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
             @error('name')
                 <small class="text-danger">{{ $message }}</small>

@@ -36,10 +36,10 @@
                 <!-- LOGO -->
                 <a href="index.html" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="{{asset('PNG_Horizontal 2.png')}}" alt="" height="26">
+                        <img src="{{asset('backend/assets/images/logo-dark.png')}}" alt="" height="26">
                     </span>
                     <span class="logo-sm">
-                        <img src="{{asset('PNG_Icon 4.png')}}" alt="" height="16">
+                        <img src="{{asset('backend/assets/images/logo_sm_dark.png')}}" alt="" height="16">
                     </span>
                 </a>
 
@@ -56,25 +56,27 @@
                 <div class="h-100" id="leftside-menu-container" data-simplebar>
 
                     <!--- Sidemenu -->
-                    <ul class="side-nav">
-                        <li class="side-nav-item">
-                            <a href="{{route('roles.index')}}" class="side-nav-link">
-                                <i class="uil-globe"></i>
-                                <span> Role </span>
-                            </a>
-                        </li>
-                        <li class="side-nav-item">
-                            <a href="{{route('users.index')}}" class="side-nav-link">
-                                <i class="uil-globe"></i>
-                                <span> User </span>
-                            </a>
-                        </li>
-                        <li class="side-nav-item">
-                            <a href="{{route('profiles.index')}}" class="side-nav-link">
-                                <i class="uil-globe"></i>
-                                <span> Profile </span>
-                            </a>
-                        </li>
+<ul class="side-nav">
+    <li class="side-nav-item">
+        <a href="{{route('roles.index')}}" class="side-nav-link">
+            <i class="mdi mdi-shield-account"></i>
+            <span> Role </span>
+        </a>
+    </li>
+    <li class="side-nav-item">
+        <a href="{{route('users.index')}}" class="side-nav-link">
+            <i class="mdi mdi-account-multiple"></i>
+            <span> User </span>
+        </a>
+    </li>
+    <li class="side-nav-item">
+        <a href="{{route('profiles.index')}}" class="side-nav-link">
+            <i class="mdi mdi-account-box"></i>
+            <span> Profile </span>
+        </a>
+    </li>
+</ul>
+
 
                     <div class="clearfix"></div>
 

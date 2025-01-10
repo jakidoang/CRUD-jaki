@@ -1,45 +1,74 @@
 @extends('master')
 
 @section('content')
-<div class="container">
-    <h1>Users</h1>
-    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Create New User</a>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Users Management</h1>
+        <a href="{{ route('users.create') }}" class="btn btn-primary">Create New User</a>
+    </div>
 
     @if(session('success'))
-        <div class="alert alert-success" id="success-alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
             {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($users as $user)
-                <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->role->name }}</td>
-                    <td>
-                        <a href="{{ route('users.show', $user) }}" class="btn btn-info btn-sm">View</a>
-                        <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('users.destroy', $user) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="card shadow">
+        <div class="card-body">
+            <table id="basic-datatable" class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->role->name }}</td>
+                            <td>
+                                <a href="{{ route('users.show', $user) }}" class="btn btn-info btn-sm me-1" title="View">
+                                    <i class="mdi mdi-eye"></i>
+                                </a>
+                                <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm me-1" title="Edit">
+                                    <i class="mdi mdi-pencil"></i>
+                                </a>
+                                <form action="{{ route('users.destroy', $user) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete">
+                                        <i class="mdi mdi-delete"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+@push('js')
+<script>
+    // Remove alert after 3 seconds
+    document.addEventListener('DOMContentLoaded', function () {
+        const successAlert = document.getElementById('success-alert');
+        if (successAlert) {
+            setTimeout(() => {
+                successAlert.style.transition = 'opacity 0.5s ease';
+                successAlert.style.opacity = '0';
+                setTimeout(() => successAlert.remove(), 500);
+            }, 3000);
+        }
+    });
+</script>
+@endpush
 @endsection
